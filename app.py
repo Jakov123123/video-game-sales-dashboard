@@ -3,7 +3,7 @@ import duckdb
 import plotly.express as px
 
 st.set_page_config(page_title="Video Game Sales Dashboard", layout="wide")
-st.title("🎮 Video Game Sales Analytics")
+st.title("Video Game Sales Analytics")
 
 @st.cache_resource
 def get_connection():
@@ -109,5 +109,6 @@ fig = px.bar(platform_sales, x='Platform', y='Total_Sales',
              title=f'Sales by Platform - {selected_region}',
              labels={'Total_Sales': 'Sales (Millions)'})
 st.plotly_chart(fig, use_container_width=True)
+
 
 
