@@ -39,7 +39,7 @@ if selected_platforms:
     platform_filter = f"AND pl.Platform IN ('{platform_list}')"
 
 # Top Games by Sales
-st.header(f"Top 10 Games by {selected_region} Sales")
+st.header(f"Top 5 Games by {selected_region} Sales")
 top_games_query = f"""
 SELECT 
     f.Name,
@@ -49,7 +49,7 @@ LEFT JOIN dim_platforms pl ON f.platform_id = pl.platform_id
 WHERE 1=1 {platform_filter}
 GROUP BY f.Name
 ORDER BY Total_Sales DESC
-LIMIT 10
+LIMIT 5
 """
 top_games = conn.execute(top_games_query).fetchdf()
 st.dataframe(top_games, use_container_width=True)
@@ -109,3 +109,4 @@ fig = px.bar(platform_sales, x='Platform', y='Total_Sales',
              title=f'Sales by Platform - {selected_region}',
              labels={'Total_Sales': 'Sales (Millions)'})
 st.plotly_chart(fig, use_container_width=True)
+
