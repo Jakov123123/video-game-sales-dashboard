@@ -65,7 +65,7 @@ SELECT
 FROM fact_sales f
 LEFT JOIN dim_platforms pl ON f.platform_id = pl.platform_id
 WHERE f.User_Score IS NOT NULL 
-AND f.User_Count > 10
+AND f.User_Count > 25
 {platform_filter}
 ORDER BY f.User_Score DESC, f.User_Count DESC
 LIMIT 5
@@ -84,7 +84,7 @@ SELECT
 FROM fact_sales f
 LEFT JOIN dim_platforms pl ON f.platform_id = pl.platform_id
 WHERE f.Critic_Score IS NOT NULL 
-AND f.Critic_Count > 10
+AND f.Critic_Count > 15
 {platform_filter}
 ORDER BY f.Critic_Score DESC, f.Critic_Count DESC
 LIMIT 5
@@ -109,4 +109,5 @@ fig = px.bar(platform_sales, x='Platform', y='Total_Sales',
              title=f'Sales by Platform - {selected_region}',
              labels={'Total_Sales': 'Sales (Millions)'})
 st.plotly_chart(fig, use_container_width=True)
+
 
